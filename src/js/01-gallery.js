@@ -27,4 +27,4 @@ function createGalleryItemsMarkup(items) {
   
 
 
-console.log(galleryItems);
+

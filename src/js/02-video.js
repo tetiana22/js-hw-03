@@ -7,20 +7,18 @@ const player = new Player(iframe, {
     fullscreen: true,
     quality: '1080p',
   });
+  const STORAGE_KEY = "videoplayer-current-time";
 
 player.on('timeupdate', throttle(function(event) {
-  console.log('Поточний час:', event.seconds);
-  localStorage.setItem('videoplayer-current-time', event.seconds);
+  localStorage.setItem('STORAGE_KEY', event.seconds);
 }, 1000));
 
 document.addEventListener('DOMContentLoaded', function() {
-  const savedTime = localStorage.getItem('videoplayer-current-time');
+  const savedTime = localStorage.getItem('STORAGE_KEY');
   
   if (savedTime) {
     player.ready().then(function() {
       player.setCurrentTime(savedTime);
     });
   }
-  
-  console.log('Збережений час:', savedTime);
 });
