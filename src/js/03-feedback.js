@@ -11,19 +11,19 @@ form.addEventListener('input', throttle(onTextareaInput, 500));
 function onFormSubmit(evt) {
   evt.preventDefault();
   evt.currentTarget.reset();
-  localStorage.removeItem('STORAGE_KEY');
+  localStorage.removeItem(STORAGE_KEY);
   console.log(formState);
-  formState = {};
+  let formState = {};
 };
 
 function onTextareaInput(evt) {
   formState[evt.target.name] = evt.target.value.trim();
-  localStorage.setItem('STORAGE_KEY', JSON.stringify(formState));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(formState));
 };
 
 window.addEventListener('DOMContentLoaded', () => {
   try {
-    const data = localStorage.getItem('STORAGE_KEY');
+    const data = localStorage.getItem(STORAGE_KEY);
   if (!data) return;
   formState = JSON.parse(data);
   Object.entries(formState).forEach(([key, val]) => {

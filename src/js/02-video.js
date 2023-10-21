@@ -10,11 +10,11 @@ const player = new Player(iframe, {
   const STORAGE_KEY = "videoplayer-current-time";
 
 player.on('timeupdate', throttle(function(event) {
-  localStorage.setItem('STORAGE_KEY', event.seconds);
+  localStorage.setItem(STORAGE_KEY, event.seconds);
 }, 1000));
 
 document.addEventListener('DOMContentLoaded', function() {
-  const savedTime = localStorage.getItem('STORAGE_KEY');
+  const savedTime = localStorage.getItem(STORAGE_KEY);
   
   if (savedTime) {
     player.ready().then(function() {
